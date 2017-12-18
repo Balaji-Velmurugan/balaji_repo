@@ -16,11 +16,22 @@ ul{
 	list-style:none
 }
 body{
-	background-color:#e2e9e9;
 }
 footer{
 	background-color:#001a1a;
 	color:#ffffff;
+}
+.modal-header{
+	/*border: #e6e6e6 1px solid;*/
+	box-shadow: 6px 2px #e6e6e6;
+	font-family:ravie;
+	padding-bottom:0px;
+	border-top:#e6e6e6 1px solid;	
+	border-left:#e6e6e6 1px solid;	
+	
+}
+.modal-body{
+	font-family:"curlz mt";
 }
 </style>
 <body>
@@ -34,19 +45,18 @@ footer{
 			</ul>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-				  <img src="details.jpg" alt="Details" style="height:95vh;width:100%">
+				  <img src="details.jpg" alt="Details" class="img-thumbnail" style="height:95vh;width:100%">
 				</div>
 				<div class="carousel-item">
-				  <img src="tajmahal.jpg" alt="White Chocolate" style="height:95vh;width:100%">
+				  <img src="tajmahal.jpg" alt="White Chocolate" class="img-thumbnail" style="height:95vh;width:100%">
 				  <div class="carousel-caption">
 					<h3>Taj Mahal</h3>
 				  </div>
 				</div>
 				<div class="carousel-item">
-				  <img src="kuberan.jpg" alt="Kuberan Chocolate" style="height:95vh;width:100%">
+				  <img src="kuberan.jpg" alt="Kuberan Chocolate" class="img-thumbnail" style="height:95vh;width:100%">
 				  <div class="carousel-caption">
 					<h3>Laughing Buddha</h3>
-					<h2><p>Laughing Buddha made with Chocolate... Our own precious hand made chocolates.</p></h2>
 				  </div>
 				</div>
 			</div>
@@ -58,9 +68,10 @@ footer{
 				<span class="carousel-control-next-icon"></span>
 			</a>
 		</div>
-		
+		<div id="announceText"><marquee><span style="color:red;font-family:jokerman">*** ORDERS WILL BE TAKEN</span></marquee></div>
 		<div id="VaritiesList">
-			<h2>Varities</h2>
+			<div class="modal-header"><h2>VARITIES</h2></div>
+			<div class="modal-body">
 			<h4>
 				<ul>
 					<li>Flavoured Chocolates</li>
@@ -68,22 +79,25 @@ footer{
 					<li>Designed Chocolates</li>
 				</ul>
 			</h4>
+			</div>
 		</div>
 		
 		<div id="ContactDetail">
-			<h2>Contact</h2>
-			<h4>
-				<p> <pre><b>Mrs.Krithika Udaya</b>
-  Cheif Executive
-  9840475189/7299961009
-  <a href="https://www.facebook.com/Desire-Chocolates-525586094473279/"><img src="facebook1.jpg" style="width:2%"> Desire Chocolates</a>
+			<div class="modal-header"><h2>Contact</h2></div>
+			<div class="modal-body">
+<h4><p><pre>
+<b>Krithika Udaya</b>
+Cheif Executive
+9840475189/7299961009
+<a href="https://www.facebook.com/Desire-Chocolates-525586094473279/"><img src="facebook1.jpg" style="width:2%"> Desire Chocolates</a>
 				</pre>
 				</p>
 			</h4>
+			</div>
 		</div>
 	</div>
 </body>
 <footer>
-	<p style="text-align:center">Powered by <b>Balaji Velmurugan</b></p>
+	<p style="text-align:center">Powered by <b>AKO</b></p>
 </footer>
 </html>

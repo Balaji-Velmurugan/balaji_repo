@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<style>
+
+html,body{
+	height:100%;
+}
+
+main{
+	min-height:85vh;
+	margin-top:2%;
+}
+footer{
+	bottom:0px;
+}
+
+nav{
+	min-height:10% !important;
+}
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-sm bg-info">
+<h2>Seeder</h2>
+</nav>
+<main class="container-fluid">
+<div class="row">
+
+<div class="col-sm-6">
+<form class="container modal-body">
+
+<input type="file" multiple name="file" id="updImg" class="custom-file-input">
+<label class="custom-file-label" for="customFile">Choose file</label>
+</form>
+<div id="preview">
+<div class="row">
+<div class="row-sm-6">
+<figure>
+<figcaption>Top View</figcaption>
+<img id="topView" class="rounded img-fluid">
+<figure>
+</div>
+
+<div class="row-sm-6">
+<img id="sideView" class="rounded img-fluid">
+</div>
+</div>
+
+<div class="row">
+<div class="row-sm-6">
+
+</div>
+
+<div class="row-sm-6">
+
+</div>
+</div>
+</div>
+</div>
+<div class="col-sm-6">
+RF
+</div>
+
+</div>
+</main>
+<footer class="text-center bg-light">
+<p>Footer</p>
+</footer>
+</body>
+<script>
+
+$(".custom-file-input").on("change", function(e) {
+console.log(e);
+var fileList = e.target.files;
+var fileName = '';
+for(i=0; i<fileList.length;i++){
+	if (fileName == ''){
+		fileName = fileList[i].name;
+	}else{
+		fileName += " , "+fileList[i].name;
+	}
+	var file = fileList[i];
+	var reader = new FileReader();
+        reader.onloadend = function() {
+		console.log(reader);
+             $('#topView').attr('src',reader.result);
+        }
+        reader.readAsDataURL(file);
+}
+$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+
+
+</script>
+</html>

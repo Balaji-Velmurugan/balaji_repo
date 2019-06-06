@@ -39,13 +39,13 @@ nav{
 
 <body>
 
-<nav class="navbar navbar-expand-sm bg-info">
+<nav class="navbar navbar-expand-sm bg-info fixed-top">
 <h2>Seeder</h2>
 </nav>
 <main class="container-fluid">
 <div class="row">
 
-<div class="col-sm-6">
+<div class="col-sm-6 modal-body h-100" style="border-right:black 1px solid">
 <form class="container modal-body">
 
 <input type="file" multiple name="file" id="updImg" class="custom-file-input">
@@ -53,62 +53,92 @@ nav{
 </form>
 <div id="preview">
 <div class="row">
-<div class="row-sm-6">
-<figure>
-<figcaption>Top View</figcaption>
-<img id="topView" class="rounded img-fluid">
-<figure>
+<div class="col-sm-6">
+<figure class="figure">
+<figcaption class="figure-caption text-center"><strong>Top View</strong></figcaption>
+<img id="ULView" class="rounded img-thumbnail img-fluid figure-img">
+</figure>
 </div>
 
-<div class="row-sm-6">
-<img id="sideView" class="rounded img-fluid">
+<div class="col-sm-6">
+<figure class="figure">
+<figcaption class="figure-caption text-center"><strong>>Side View</strong></figcaption>
+<img id="URView" class="rounded img-thumbnail img-fluid figure-img">
+</figure>
 </div>
 </div>
 
 <div class="row">
-<div class="row-sm-6">
-
-</div>
-
-<div class="row-sm-6">
-
-</div>
-</div>
-</div>
-</div>
 <div class="col-sm-6">
-RF
+<figure>
+<figcaption class="figure-caption text-center"><strong>>Lateral View</strong></figcaption>
+<img id="DLView" class="rounded img-thumbnail img-fluid figure-img">
+</figure>
+</div>
+
+<div class="col-sm-6">
+<figure>
+<figcaption class="figure-caption text-center"><strong>>Lateral View</strong></figcaption>
+<img id="DRView" class="rounded img-thumbnail img-fluid figure-img">
+</figure>
+</div>
+</div>
+</div>
+<div>
+	<button class="btn btn-primary btn-lg btn-block">Generate Result</button>
+</div>
+</div>
+
+<div class="col-sm-6">
+<div class="row">
+
+<div class="mx-auto">
+
+</div>
+
+</div>
 </div>
 
 </div>
 </main>
-<footer class="text-center bg-light">
+<footer class="text-center bg-light fixed-bottom">
 <p>Footer</p>
 </footer>
 </body>
-<script>
-
+<script language="javascript" type="text/javascript">
+$(function () {
 $(".custom-file-input").on("change", function(e) {
-console.log(e);
-var fileList = e.target.files;
+var fileList = {};
+fileList = e.target.files;
 var fileName = '';
+if($('#ULView').attr('src')){
+	URL.revokeObjectURL($('#ULView').attr('src'));
+}else if($('#URView').attr('src')){
+	URL.revokeObjectURL($('#URView').attr('src'));
+}else if($('#DLView').attr('src')){
+	URL.revokeObjectURL($('#DLView').attr('src'));
+}else if($('#DRView').attr('src')){
+	URL.revokeObjectURL($('#DRView').attr('src'));
+}
 for(i=0; i<fileList.length;i++){
 	if (fileName == ''){
 		fileName = fileList[i].name;
 	}else{
 		fileName += " , "+fileList[i].name;
 	}
-	var file = fileList[i];
-	var reader = new FileReader();
-        reader.onloadend = function() {
-		console.log(reader);
-             $('#topView').attr('src',reader.result);
-        }
-        reader.readAsDataURL(file);
+	if(i == 0){
+		$('#ULView').attr('src',URL.createObjectURL(fileList[i]));
+	 }else if(i == 1){
+		$('#URView').attr('src',URL.createObjectURL(fileList[i]));
+	 }else if(i == 2){
+		$('#DLView').attr('src',URL.createObjectURL(fileList[i]));
+	 }else if(i == 3){
+		$('#DRView').attr('src',URL.createObjectURL(fileList[i]));
+	 }
 }
 $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 });
-
+});
 
 </script>
 </html>

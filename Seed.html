@@ -24,6 +24,7 @@ body{
 main{
 	margin-top:6%;
 	margin-bottom:5%;
+	height:100%;
 }
 footer{
 	bottom:0px;
@@ -31,8 +32,11 @@ footer{
 
 nav{
 	min-height:10% !important;
-	background-image:linear-gradient(73deg,#09597f,#20a8e9 48%,#2abaff);
+	/*background-image:linear-gradient(73deg,#09597f,#20a8e9 48%,#2abaff);*/
+	background-image:URL("kx-background.jpg");
+	background-position:top;
 }
+
 </style>
 
 </head>
@@ -43,9 +47,9 @@ nav{
 <h2 style="font-family:Graphik-Regular; font-size=20px;color:#fff">Seeder</h2>
 </nav>
 <main class="container-fluid">
-<div class="row">
+<div class="row" style="min-height:80vh">
 
-<div class="col-sm-6 modal-body" style="border-right:black 1px solid">
+<div class="col-sm-6 modal-body" style="box-shadow: 10px 10px 5px grey;">
 <form class="container modal-body">
 
 <input type="file" multiple name="file" id="updImg" class="custom-file-input">
@@ -85,15 +89,59 @@ nav{
 </div>
 </div>
 <div>
-	<button class="btn btn-primary btn-lg btn-block">Generate Result</button>
-</div>
+	<button id="result" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#loadingBar">Generate Result</button>
 </div>
 
-<div class="col-sm-6">
+<div class="modal fade" id="loadingBar" tabindex="-1" role="dialog" aria-labelledby="loadingBarTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+		<span><strong><h3>Loading</h3></strong></span>
+        <div class="spinner-grow text-primary float-left"></div>
+		<div class="spinner-grow text-primary float-left"></div>
+		<div class="spinner-grow text-primary float-left"></div>
+		<div class="spinner-grow text-primary float-left"></div>
+		<div class="spinner-grow text-primary float-left"></div>
+		<div class="spinner-grow text-primary float-left"></div>
+		<div class="spinner-grow text-primary float-left"></div>
+		<div class="spinner-grow text-primary float-left"></div>
+      </div>
+      <div class="modal-body">
+        <div class="progress" style="height:30px">
+    <div id="progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>
+  </div>
+      </div>
+</div>
+
+</div>
+</div>
+</div>
+<div class="col-sm-6" style="box-shadow: 10px 10px 5px grey;">
 <div class="row">
 
 <div class="mx-auto">
-	<h4>RESULT</h4>
+<div class="modal-header">
+	<h4 class="modal-title">RESULT</h4>
+</div>
+	<div class="modal-body">
+		<div class="row form-group">
+			<div class="col">
+				<label for="prediction_val">Prediction</label>
+			</div>
+			<div class="col">
+				<input id="prediction_val" type="text" class="form-control" readonly>
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col">
+				<label for="accuracy_val">Accuracy</label>
+			</div>
+			<div class="col">
+				<input id="accuracy_val" class="form-control" type="text" readonly>
+			</div>
+		</div>
+	</div>
 </div>
 
 </div>
@@ -139,6 +187,21 @@ for(i=0; i<fileList.length;i++){
 $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 });
 });
+$('#result').click(function() {
+percent = 0;
+timerId = setInterval(function() {
 
+    // increment progress bar
+    percent += 5;
+    $('#progress').css('width', percent + '%');
+
+    if (percent >= 100) {
+      clearInterval(timerId);
+      //$('#btn').attr('disabled', false);
+      $('#progress').removeClass('progress-bar-animated active').html('Complete');
+    }
+  }, 300);
+  });
+  
 </script>
 </html>

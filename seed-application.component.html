@@ -1,0 +1,12 @@
+<!-- <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(url)" height="400" width="100%"></iframe> -->
+
+<section class="container">
+<nb-card>
+    <nb-card-body>
+<input id="cin" name="cin" type="file" (change)="fileChangeEvent($event)" placeholder="Upload a file..." multiple/>
+<button type="button" class="btn btn-success btn-s" (click)="upload()">
+    <i class="glyphicon glyphicon-open-file"></i>&nbsp;Upload
+</button>
+</nb-card-body>
+  </nb-card>
+</section>
